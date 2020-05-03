@@ -9,15 +9,12 @@ import org.apache.kafka.common.serialization.StringSerializer
 import scala.collection.JavaConverters._
 
 /*
-* This singleton scala object consists of code to produce messages in to kafka topic by reading a file.
-* The sample file consists of two columns seperated by ':'. For each line the kafka producer record will be created and
-* will be sent to kafka topic.
-*
-* KafkaProducer - Send and forget
+* This singleton scala object consist of Simple kafkaProducer which will get the acknowledgement for each message we send.
+* If we call get method on producer.send() we will get the acknowledgement for the message we send. This will cause delay in sending the next
+* message. But we can guarantee that every message we send will reach the topic.
 * */
 
-
-object FileToKafkaTopicKafkaProducer {
+object KafkaProducerWithAcknowlegement {
   def main(args: Array[String]): Unit = {
 
     val inputFilePath = "C:\\Users\\Kishan\\IdeaProjects\\kafkaToMySql\\sampleFiles\\sample_messages_50.csv"
@@ -25,13 +22,15 @@ object FileToKafkaTopicKafkaProducer {
     val topicName = "TestTopic"
     val bootStrapServers = "192.168.181.128:9092,192.168.181.128:9093,192.168.181.128:9094"
 
-    val producerProperties: java.util.Map[String, Object] = Map[String, Object](
+    val producerProperties = Map[String, Object](
       "bootstrap.servers" -> bootStrapServers,
       "key.serializer" -> classOf[StringSerializer],
       "value.serializer" -> classOf[StringSerializer]
     ).asJava
 
-    val kafkaProducer: KafkaProducer[String, String] = new KafkaProducer[String, String](producerProperties)
+    val randomInt = scala.util.Random
+
+    val kafkaProducer = new KafkaProducer[String, String](producerProperties)
 
     //Read input File
     val file: File = new File(inputFilePath)
@@ -53,7 +52,8 @@ object FileToKafkaTopicKafkaProducer {
         // The sample file is csv file delimited by ':' the first column value is the key and second column value is the message
         val record = scanner.nextLine().split(":")
         val producerRecord = new ProducerRecord[String, String](topicName, record(0), record(1))
-        kafkaProducer.send(producerRecord)
+        val ack = kafkaProducer.send(producerRecord).get()
+        println(s"Message Partition: ${ack.partition()}, Message Offset: ${ack.offset()}")
         numRecordsSent += 1
       }
       println(s"Total number of records sent: ${numRecordsSent}")
@@ -66,6 +66,6 @@ object FileToKafkaTopicKafkaProducer {
     } finally {
       kafkaProducer.close()
     }
+
   }
 }
-

@@ -9,6 +9,8 @@ import scala.collection.JavaConverters._
 /*
 * This singleton scala object will make use of method defined in the com.kishan.mysql.MySqlToKafkaProducer and
 * send message into kafka topic as JSON
+*
+* KafkaProducer - Send and forget
 * */
 
 object MySqlToKafkaTopic {

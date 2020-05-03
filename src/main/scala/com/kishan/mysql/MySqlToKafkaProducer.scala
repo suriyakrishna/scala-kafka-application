@@ -10,11 +10,10 @@ import scala.collection.JavaConverters._
 import scala.io.Source
 
 /*
-* This scala object consist of method will get the data from the MySql table and create JSON for each record.
-* The JSON will be send to kafka topic.
+* This scala object consist of method to get the data from the MySql table and create JSON for each record.
+* The JSON will be sent to kafka topic.
 * The key for message will be concatenated value of the list of keys provided as input.
 * */
-
 
 object MySqlToKafkaProducer {
 
