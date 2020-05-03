@@ -41,7 +41,7 @@ object SimpleKafkaConsumerWithRebalanceListener {
     try {
       do {
         val records = consumer.poll(Duration.ofSeconds(10)).asScala
-//        recordCount = records.size
+        recordCount = records.size
         for (record <- records) {
           println(s"Record Key: ${record.key()}, Record Value: ${record.value()}, Record Partition: ${record.partition()}")
           rebalanceListener.addOffset(record.topic(), record.partition(), record.offset())
