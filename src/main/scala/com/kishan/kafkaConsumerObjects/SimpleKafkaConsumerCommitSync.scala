@@ -10,7 +10,7 @@ import scala.collection.JavaConverters._
 
 /*
 * This singleton object contains code for Kafka Consumer manual commit with commitSync() method.
-* The code with be same as the SimpleKafkaConsumerCommitAsync only difference
+* The code will be same as the SimpleKafkaConsumerCommitAsync only difference
 * for each poll we will use commitSync method instead of commitASync method
 */
 
