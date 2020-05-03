@@ -12,7 +12,7 @@ import scala.collection.JavaConverters._
 * print the message in the console without committing offsets
 */
 
-object SimpleKakfaConsumer {
+object SimpleKafkaConsumer {
   def main(args: Array[String]): Unit = {
 
     val topicName = "InboundTopic"
