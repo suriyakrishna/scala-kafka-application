@@ -12,6 +12,8 @@ import scala.collection.JavaConverters._
 * This singleton scala object consists of code to produce messages in to kafka topic by reading a file.
 * The sample file consists of two columns seperated by ':'. For each line the kafka producer record will be created and
 * will be sent to kafka topic.
+*
+* KafkaProducer - Send and forget
 * */
 
 

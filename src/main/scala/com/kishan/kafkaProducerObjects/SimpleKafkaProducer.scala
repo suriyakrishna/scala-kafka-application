@@ -10,6 +10,8 @@ import scala.collection.JavaConverters._
 * kafka topic and key will be having random number value. Scala readLine method is used to get input from user
 * for each input producer record will be created and will be sent to the kafka topic. If user want to close the
 * application user have to type exit.
+*
+* KafkaProducer - Send and forget
 * */
 
 
