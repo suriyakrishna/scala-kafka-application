@@ -16,8 +16,6 @@ import scala.collection.JavaConverters._
 object MySqlToKafkaTopic {
   def main(args: Array[String]): Unit = {
 
-    val inputFilePath = "C:\\Users\\Kishan\\IdeaProjects\\kafkaToMySql\\sampleFiles\\sample_messages_50.csv"
-
     val topicName = "TestTopic"
     val bootStrapServers = "192.168.181.128:9092,192.168.181.128:9093,192.168.181.128:9094"
 

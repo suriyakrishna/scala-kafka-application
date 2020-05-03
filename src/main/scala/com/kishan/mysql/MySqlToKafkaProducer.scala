@@ -15,7 +15,6 @@ import scala.io.Source
 * The key for message will be concatenated value of the list of keys provided as input.
 * */
 
-
 object MySqlToKafkaProducer {
 
   def sendMessageAsJson(producer: KafkaProducer[String, String], topicName: String, sqlQuery: String, recordKeys: List[String]): Unit = {
