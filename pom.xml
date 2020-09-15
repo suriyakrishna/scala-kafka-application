@@ -53,28 +53,19 @@
 
         <plugins>
             <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.1</version>
-
                 <configuration>
-
-                    <finalName>${project.artifactId}</finalName>
-                    <appendAssemblyId>false</appendAssemblyId>
-
                     <archive>
-                        <mainfest>
-                            <mainClass>com.kishan.kafkaToMySql</mainClass>
-                        </mainfest>
+                        <manifest>
+                            <mainClass>com.kishan.kafkaConsumerObjects.SimpleKafkaConsumer</mainClass>
+                        </manifest>
                     </archive>
-
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-
+                    <finalName>${artifactId}_${version}</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
-
                 <executions>
                     <execution>
                         <id>make-assembly</id>
@@ -84,7 +75,6 @@
                         </goals>
                     </execution>
                 </executions>
-
             </plugin>
 
             <plugin>
